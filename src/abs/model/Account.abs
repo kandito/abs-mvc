@@ -1,0 +1,156 @@
+module MAccountModel;
+
+export Account, AccountImpl, AccountDb, AccountDbImpl;
+import * from ABS.FLI;
+
+interface Account
+{
+    Unit setName(String name);
+    String getName();
+    Unit setAddress(String address);
+    String getAddress();
+    Unit setPhone(String phone);
+    String getPhone();
+	Unit setBalance(Int balance);
+	Int getBalance();
+	Unit setKind(String kind);
+	String getKind();
+	Unit setPin(String pin);
+	String getPin();
+    Unit setCardNumber(String cardNumber);
+    String getCardNumber();
+	Unit setId(Int id);
+    Int getId();
+}
+
+class AccountImpl implements Account
+{
+    String name = "";
+    String address = "";
+    String phone = "";
+	Int balance = 0;
+    String kind = "";
+    String pin = "";
+    String cardNumber = "";
+	Int id = 0;
+    
+    Unit setName(String name)
+    {
+        this.name = name;
+    }
+
+    String getName()
+    {
+        return this.name;
+    }
+    
+    Unit setAddress(String address)
+    {
+    	this.address = address;
+    }
+    
+    String getAddress()
+    {
+    	return this.address;
+    }
+    
+    Unit setPhone(String phone)
+    {
+    	this.phone = phone;
+    }
+    
+    String getPhone()
+    {
+    	return this.phone;
+    }
+
+	Unit setBalance(Int balance)
+	{
+		this.balance = balance;
+	}
+
+	Int getBalance()
+	{
+		return this.balance;
+	}
+
+	Unit setKind(String kind)
+	{
+		this.kind = kind;
+	}
+
+	String getKind()
+	{
+		return this.kind;
+	}
+	
+	Unit setPin(String pin)
+	{
+		this.pin = pin;
+	}
+	
+	String getPin()
+	{
+		return this.pin;
+	}
+
+    Unit setCardNumber(String cardNumber)
+    {
+        this.cardNumber = cardNumber;
+    }
+
+    String getCardNumber()
+    {
+        return this.cardNumber;
+    }
+	
+	Unit setId(Int id)
+    {
+    	this.id = id;
+    }
+    
+    Int getId()
+    {
+    	return this.id;
+    }
+}
+
+
+interface AccountDb {
+	List<Account> findAll(String className);
+	List<Account> findAllByAttributes(String className, String query);
+	Account find(String className);
+	Account findByAttributes(String className, String query);
+	Unit save(Account account);
+	Unit delete(Account account);
+	Account update(Account account);
+	String log(String log);
+}
+	
+[Foreign]
+class AccountDbImpl implements AccountDb {
+	List<Account> findAllByAttributes(String className, String query) {
+		return Nil;
+	}
+	List<Account> findAll(String className) {
+		return Nil;
+	}
+	Account findByAttributes(String className, String query) {
+		return new local AccountImpl();
+	}
+	Account find(String className) {
+		return new local AccountImpl();
+	}
+	Unit save(Account account) {
+		
+	}
+	Unit delete(Account account) {
+	
+	}
+	Account update(Account account) {
+		return new local AccountImpl();
+	}
+	String log(String log) {
+		return "return log";
+	}
+}

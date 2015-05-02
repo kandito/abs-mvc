@@ -1,0 +1,57 @@
+delta DContactPageModel;
+uses MAccountModel;
+adds interface ContactForm 
+{
+    String getSubject();
+    Unit setSubject(String subject);
+
+    Int getPriority();
+    Unit setPriority(Int priority);
+
+    String getMessage();
+    Unit setMessage(String message);
+}
+
+adds class ContactFormImpl implements ContactForm
+{
+
+}
+
+modifies class ContactFormImpl 
+{
+    adds String subject = "";
+    adds Int priority = 0;
+    adds String message = "";
+
+    adds String getSubject()
+    {
+        return subject;
+    }
+
+    adds Unit setSubject(String subject)
+    {
+        this.subject = subject;
+    }
+
+    adds Int getPriority()
+    {
+        return priority;
+    }
+
+    adds Unit setPriority(Int priority)
+    {
+        this.priority = priority;
+    }
+
+    adds String getMessage()
+    {
+        return message;
+    }
+
+    adds Unit setMessage(String message)
+    {
+        this.message = message;
+    }
+}
+
+adds export ContactForm, ContactFormImpl;

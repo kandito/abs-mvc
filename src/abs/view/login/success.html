@@ -1,0 +1,42 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>Internet Banking - Success</title>
+	</head>
+	<body>
+		<div th:replace="fragments :: menu"></div>
+		<h3>Welcome, <span th:text="${data.name}"></span></h3>
+
+		<p>This is your account information:</p>
+		<table>
+			<tbody>
+				<tr>
+					<td>Name</td>
+					<td>:</td>
+					<td><span th:text="${data.name}"></span></td>
+				</tr>
+				<tr>
+					<td>Address</td>
+					<td>:</td>
+					<td><span th:text="${data.address}"></span></td>
+				</tr>
+				<tr>
+					<td>Phone</td>
+					<td>:</td>
+					<td><span th:text="${data.phone}"></span></td>
+				</tr>
+				<tr>
+					<td>Account Number</td>
+					<td>:</td>
+					<td><span th:text="${data.cardNumber}"></span></td>
+				</tr>
+				<tr>
+					<td>Account Type</td>
+					<td>:</td>
+					<td><span th:text="${data.kind}"></span></td>
+				</tr>
+			</tbody>
+		</table>
+	</body>
+	<div th:replace="fragments :: footer"></div>
+</html>

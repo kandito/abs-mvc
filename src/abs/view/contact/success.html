@@ -1,0 +1,28 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<title>Internet Banking - Contact Form</title>
+</head>
+<body>
+	<div th:replace="fragments :: menu"></div>
+    <h3>Message Sent</h3>
+    <p>You have successfully sent the following message:</p>
+    <table>
+        <tbody>
+        <tr>
+            <td>Subject:</td>
+            <td><span th:text="${data.subject}"></span></td>
+        </tr>
+        <tr>
+            <td>Priority:</td>
+            <td><span th:text="${data.priority}"></span></td>
+        </tr>
+        <tr>
+            <td>Message:</td>
+            <td><span th:text="${data.message}"></span></td>
+        </tr>
+        </tbody>
+    </table>
+	<div th:replace="fragments :: footer"></div>
+</body>
+</html>

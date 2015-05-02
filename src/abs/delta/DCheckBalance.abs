@@ -1,0 +1,22 @@
+delta DCheckBalance(Int minBalance);
+uses MAccountController;
+
+modifies class AccountControllerImpl
+{
+	modifies Pair<String, List<Account>> withdraw(ABSHttpRequest request)
+	{
+		Pair<String, List<Account>> originResult = core.original(request);
+		List<Account> dataModel = snd(originResult);
+		Account account = head(dataModel);
+
+		Int currentBalance = account.getBalance();
+		Pair<String, List<Account>> response = originResult;
+
+		if(currentBalance <= minBalance)
+		{
+			response = Pair("withdraw/failed", Nil);
+		}
+
+		return response;
+	}
+}

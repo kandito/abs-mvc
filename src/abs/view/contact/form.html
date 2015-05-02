@@ -1,0 +1,38 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<title>Internet Banking - Contact Form</title>
+	<link rel="stylesheet" type="text/css" href="http://localhost:8081/style.css"/>
+</head>
+<body>
+	<div th:replace="fragments :: menu"></div>
+    <h3>Contact Form</h3>
+    <form method="POST" action="contact.abs">
+        <table>
+            <tbody>
+                <tr>
+                    <td><label for="subject">Subject:</label></td>
+                    <td><input type="text" name="subject" /></td>
+                </tr>
+                <tr>
+                    <td><label for="priority">Priority:</label></td>
+                    <td>
+                        <select name="priority">
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td><label for="message">Message:</label></td>
+                    <td><input type="text" name="message" placeholder="Your message" /></td>
+                </tr>
+            </tbody>
+        </table>
+        <br />
+        <input type="submit" value="Post" />
+    </form>
+	<div th:replace="fragments :: footer"></div>
+</body>
+</html>

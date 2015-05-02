@@ -1,0 +1,29 @@
+module ABS.Framework.Route;
+
+interface RouteConfig
+{
+	String route(String url);
+}
+
+class RouteConfigImpl implements RouteConfig
+{
+	String route(String url)
+	{
+		String result = case url
+		{
+		    // Account pages
+            "/ib/loginForm.abs" => "MAccountController.AccountControllerImpl@loginForm";
+            "/ib/login.abs" => "MAccountController.AccountControllerImpl@login";
+            "/ib/depositForm.abs" => "MAccountController.AccountControllerImpl@depositForm";
+            "/ib/deposit.abs" => "MAccountController.AccountControllerImpl@deposit";
+            "/ib/withdrawForm.abs" => "MAccountController.AccountControllerImpl@withdrawForm";
+            "/ib/withdraw.abs" => "MAccountController.AccountControllerImpl@withdraw";
+            "/ib/checkBalance.abs" => "MAccountController.AccountControllerImpl@checkBalance";
+            "/ib/accountInfo.abs" => "MAccountController.AccountControllerImpl@accountInfo";
+			"/ib/hello.abs" => "MHelloController.HelloControllerImpl@whatsapp";
+			_ => "";
+		};
+		
+		return result;
+	}
+}

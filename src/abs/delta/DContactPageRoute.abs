@@ -1,0 +1,20 @@
+delta DContactPageRoute;
+uses ABS.Framework.Route;
+modifies class RouteConfigImpl 
+{
+    modifies String route(String url)
+    {
+        String result = original(url);
+
+        if(result == "")
+        {
+            result = case url {
+                "/ib/contactForm.abs" => "MAccountController.AccountControllerImpl@contactForm";
+                "/ib/contact.abs" => "MAccountController.AccountControllerImpl@contact";
+                _ => "";
+            };
+        }
+
+        return result;
+    }
+}

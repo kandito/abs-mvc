@@ -1,0 +1,31 @@
+// Define your product(s) here.
+product Default(
+    Login,
+    Account,
+        Deposit,
+        Withdraw
+);
+
+product IBWithWithdrawFee(
+    Login,
+    Account,
+        Deposit,
+        Withdraw,
+            Fee
+);
+
+product IBWithCheckBalance(
+    Login,
+    Account,
+        Deposit,
+        Withdraw,
+            CheckBalance
+);
+
+product IBWithContactPage(
+    Login,
+    Account,
+        Deposit,
+        Withdraw,
+    ContactPage
+);
