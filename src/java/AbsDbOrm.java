@@ -32,13 +32,14 @@ public class AbsDbOrm  {
             Class c = Class.forName(className.getString());
             Object object = c.newInstance();
 
-            ResultSet rs = this.select(object, condition.getString());
-            AbsJavaReflection reflection = null;
+            AbsJavaReflection reflection = AbsJavaReflection.createReflection(object);
+            ResultSet rs = this.select(reflection, condition.getString());
+
             while(rs.next()) {
+                object = c.newInstance();
                 reflection = AbsJavaReflection.createReflection(object);
                 this.createObjectFromResult(rs, reflection);
                 listObject = ABS.StdLib.appendright_f.apply(listObject, (abs.backend.java.lib.types.ABSValue) object);
-                object = c.newInstance();
             }
 
             return listObject;
@@ -58,7 +59,7 @@ public class AbsDbOrm  {
 			Object object = c.newInstance();
 			
 			AbsJavaReflection reflection = AbsJavaReflection.createReflection(object);
-			ResultSet rs = this.select(object, condition.getString());
+			ResultSet rs = this.select(reflection, condition.getString());
             if(rs.next()) {
                 this.createObjectFromResult(rs, reflection);
             }
@@ -149,16 +150,15 @@ public class AbsDbOrm  {
         return null;
     }
 
-	private ResultSet select(Object object, String condition) {
-		AbsJavaReflection reflection = AbsJavaReflection.createReflection(object);
+	private ResultSet select(AbsJavaReflection reflection, String condition) {
 		String tableName = reflection.getInterfaceName();
 		
 		AbsSqlCommandBuilder command = AbsSqlCommandBuilder.getCommandBuilder();
-		Map<String, String> conditionMap = null;
+		List<String> conditionList = null;
 		if(!condition.equals("")) {
-			conditionMap = this.createMapCondition(condition);
+			conditionList = this.createListCondition(condition);
 		}
-		String query = command.select(tableName, conditionMap);
+		String query = command.select(tableName, conditionList);
 		return AbsJdbcTransaction.createTransaction().createQueryStatement(query);
 	}
 	
@@ -193,14 +193,12 @@ public class AbsDbOrm  {
 		}
 	}
 	
-	private Map<String, String> createMapCondition(String condition) {
-		Map<String, String> map = new HashMap<String, String>();
-		
+	private List<String> createListCondition(String condition) {
+		List<String> list = new ArrayList<String>();
 		for(String c : condition.split(",")) {
-			String[] keyValue = c.split("=");
-			map.put(keyValue[0], keyValue[1]);
+			list.add(c);
 		}
-		return map;
+		return list;
 	}
 }
 
@@ -219,7 +217,7 @@ class AbsJdbcTransaction {
 	}
 	
 	public void createUpdateStatement(String query) {
-		System.out.println(query);
+        System.out.println(query);
 		try {
             Class.forName(driver).newInstance();
             Connection conn = this.getConnection();
@@ -231,7 +229,7 @@ class AbsJdbcTransaction {
 	}
 	
 	public ResultSet createQueryStatement(String query) {
-		System.out.println(query);
+        System.out.println(query);
 		try {
             Class.forName(AbsJdbcTransaction.driver).newInstance();
             Connection conn = this.getConnection();
@@ -413,7 +411,7 @@ class AbsJavaReflection {
 class AbsSqlCommandBuilder {
 	private StringBuilder command;
 	
-	public AbsSqlCommandBuilder() {
+	private AbsSqlCommandBuilder() {
 		this.command = new StringBuilder();
 	}
 	
@@ -450,29 +448,23 @@ class AbsSqlCommandBuilder {
 		return this.command.toString();
 	}
 	
-	public String select(String table, Map<String, String> condition) {
-		this.command.append("SELECT * FROM ");
-		this.command.append(table);
-		if(condition != null) {
-			this.command.append(" WHERE ");
-			Iterator iterator = condition.entrySet().iterator();
-			while(iterator.hasNext()) {
-				Map.Entry pair = (Map.Entry) iterator.next();
-				this.command.append(pair.getKey());
-				this.command.append("=");
-				this.command.append("\"");
-				this.command.append(pair.getValue());
-				this.command.append("\"");
-				
-				if(iterator.hasNext()) {
-					this.command.append(" AND ");
-				}
-			}
-		}
-		return this.command.toString();
-	}	
-	
-	public String delete(String table, Map<String, String> condition) {
+	public String select(String table, List<String> condition) {
+        this.command.append("SELECT * FROM ");
+        this.command.append(table);
+        if(condition != null) {
+            this.command.append(" WHERE ");
+            Iterator<String> iterator = condition.iterator();
+            while(iterator.hasNext()) {
+                this.command.append(iterator.next());
+                if(iterator.hasNext()) {
+                    this.command.append(" AND ");
+                }
+            }
+        }
+        return this.command.toString();
+    }
+
+    public String delete(String table, Map<String, String> condition) {
         this.command.append("DELETE FROM ");
         this.command.append(table);
         if(condition != null) {
