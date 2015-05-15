@@ -1,13 +1,10 @@
 module MAccountController;
 import Account, AccountImpl, AccountDb, AccountDbImpl from MAccountModel;
-import AccountData, AccountDataImpl from MAccountData;
 import ABSHttpRequest from ABS.Framework.Http;
 import Utility, UtilityImpl from ABS.Framework.Utility;
 
 interface AccountController
 {
-    Pair<String, List<Account>> loginForm(ABSHttpRequest request);
-	Pair<String, List<Account>> login(ABSHttpRequest request);
 	Pair<String, List<Account>> checkBalance(ABSHttpRequest request);
 	Pair<String, List<Account>> depositForm(ABSHttpRequest request);
 	Pair<String, List<Account>> deposit(ABSHttpRequest request);
@@ -19,33 +16,6 @@ class AccountControllerImpl implements AccountController
 {
     Int fee = 0;
 
-    Pair<String, List<Account>> loginForm(ABSHttpRequest request)
-    {
-        return Pair("login/form", Nil);
-    }
-
-	Pair<String, List<Account>> login(ABSHttpRequest request)
-	{
-		AccountData db = new local AccountDataImpl();
-		db.init();
-		
-		Account account = db.getAccount();
-
-		String cardNumber = request.getInput("card_number");
-		String pin = request.getInput("pin");
-		String pinAccount = account.getPin();
-		
-		Pair<String, List<Account>> response = Pair("login/failed", Nil);
-		if(pinAccount == pin)
-		{
-            List<Account> dataModel = Nil;
-            dataModel = appendright(dataModel, account);
-            response = Pair("login/success", dataModel);
-		}
-		
-		return response;
-	}
-	
 	Pair<String, List<Account>> depositForm(ABSHttpRequest request)
     {
         return Pair("deposit/form", Nil);

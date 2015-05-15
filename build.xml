@@ -14,7 +14,6 @@
 	<property name="target.java.bin" location="${target}/java/bin" />
 
 	<property name="lib.abs" location="${lib}/absfrontend.jar" />
-	<property name="lib.orm" location="${lib}/AbsDbOrm.jar"/>
 
 	<path id="build.abs.classpath">
 		<pathelement location="${lib.abs}" />
