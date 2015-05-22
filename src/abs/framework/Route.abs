@@ -11,16 +11,14 @@ class RouteConfigImpl implements RouteConfig
 	{
 		String result = case url
 		{
-		    // Account pages
-            "/ib/loginForm.abs" => "MAccountController.AccountControllerImpl@loginForm";
-            "/ib/login.abs" => "MAccountController.AccountControllerImpl@login";
-            "/ib/depositForm.abs" => "MAccountController.AccountControllerImpl@depositForm";
-            "/ib/deposit.abs" => "MAccountController.AccountControllerImpl@deposit";
-            "/ib/withdrawForm.abs" => "MAccountController.AccountControllerImpl@withdrawForm";
-            "/ib/withdraw.abs" => "MAccountController.AccountControllerImpl@withdraw";
-            "/ib/checkBalance.abs" => "MAccountController.AccountControllerImpl@checkBalance";
-            "/ib/accountInfo.abs" => "MAccountController.AccountControllerImpl@accountInfo";
-			"/ib/hello.abs" => "MHelloController.HelloControllerImpl@whatsapp";
+		    // Program pages
+            "/program/list.abs" => "MProgramController.ProgramControllerImpl@list";
+            "/program/add.abs" => "MProgramController.ProgramControllerImpl@add";
+            "/program/save.abs" => "MProgramController.ProgramControllerImpl@save";
+            "/program/edit.abs" => "MProgramController.ProgramControllerImpl@edit";
+            "/program/update.abs" => "MProgramController.ProgramControllerImpl@update";
+            "/program/delete.abs" => "MProgramController.ProgramControllerImpl@delete";
+			"/program/detail.abs" => "MProgramController.ProgramControllerImpl@detail";
 			_ => "";
 		};
 		

@@ -204,7 +204,7 @@ public class AbsDbOrm  {
 
 class AbsJdbcTransaction {
 	private static final String url = "jdbc:mysql://localhost:3306/";
-    private static final String dbname = "abs_mvc";
+    private static final String dbname = "abs_studikasus";
     private static final String driver = "com.mysql.jdbc.Driver";
     private static final String username = "root";
     private static final String password = "";

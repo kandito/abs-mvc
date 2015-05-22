@@ -1,31 +1,17 @@
 // Define your product(s) here.
 product Default(
-    Login,
     Account,
-        Deposit,
-        Withdraw
+		Source
 );
 
-product IBWithWithdrawFee(
-    Login,
+product SistemKeuanganBO(
     Account,
-        Deposit,
-        Withdraw,
-            Fee
+		Type,
+	GuidePage
 );
 
-product IBWithCheckBalance(
-    Login,
+product SistemKeuanganBSO(
     Account,
-        Deposit,
-        Withdraw,
-            CheckBalance
-);
-
-product IBWithContactPage(
-    Login,
-    Account,
-        Deposit,
-        Withdraw,
-    ContactPage
+		Source,
+	GuidePage
 );

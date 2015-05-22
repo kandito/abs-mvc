@@ -1,8 +1,0 @@
-delta DFee(Int dfee);
-uses MAccountController;
-
-modifies class AccountControllerImpl
-{
-	removes Int fee;
-	adds Int fee = dfee;
-}

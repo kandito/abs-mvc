@@ -1,4 +1,4 @@
-delta DContactPageRoute;
+delta DGuidePageRoute;
 uses ABS.Framework.Route;
 modifies class RouteConfigImpl 
 {
@@ -9,8 +9,7 @@ modifies class RouteConfigImpl
         if(result == "")
         {
             result = case url {
-                "/ib/contactForm.abs" => "MAccountController.AccountControllerImpl@contactForm";
-                "/ib/contact.abs" => "MAccountController.AccountControllerImpl@contact";
+                "/guide.abs" => "MProgramController.ProgramControllerImpl@guide";
                 _ => "";
             };
         }

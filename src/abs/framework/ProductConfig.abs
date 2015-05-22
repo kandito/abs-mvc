@@ -1,25 +1,28 @@
 // Product line and features
 productline InternetBanking;
 features
-    Login,
     Account,
-        Deposit,
-        Withdraw,
-            Fee,
-            CheckBalance,
-    ContactPage;
+        Source,
+        Type,
+    GuidePage;
 
 // Delta modules
-/* BEGIN deltas for WithdrawFee */
-delta DFee(7500) when Fee;
+/* BEGIN deltas for Biaya Source */
+delta DProgramSource when Source;
 /* END */
 
-/* BEGIN deltas for CheckBalance */
-delta DCheckBalance(100000) when CheckBalance;
+/* BEGIN deltas for Biaya Type */
+delta DProgramType when Type;
 /* END */
 
 /* BEGIN deltas for ContactPage */
-delta DContactPageModel when ContactPage;
-delta DContactPageController after DContactPageModel when ContactPage;
-delta DContactPageRoute after DContactPageController when ContactPage;
+delta DGuidePageController when GuidePage;
+delta DGuidePageRoute after DGuidePageController when GuidePage;
 /* END */
+
+
+/* BEGIN deltas for Form */
+delta DFormSourceController after DProgramSource when Source;
+delta DFormTypeController after DProgramType when Account;
+/* END */
+

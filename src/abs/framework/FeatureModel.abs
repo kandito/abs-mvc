@@ -1,18 +1,12 @@
 // Write uTVL feature model here
-root IBFeatures {
+root SistemKeuangan {
     group allof {
-        Login,
         Account {
             group allof {
-                Deposit,
-                Withdraw {
-                    group allof {
-                        opt Fee {Int fee in [1..10000]; },
-                        opt CheckBalance {Int min in [1..1000000]; }
-                    }
-                }
+                opt Source,
+                opt Type
             }
         },
-        opt ContactPage
+        opt Guide
     }
 }
