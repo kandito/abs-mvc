@@ -1,10 +1,10 @@
 // Write uTVL feature model here
 root SistemKeuangan {
     group allof {
-        Account {
+        Program {
             group allof {
                 opt Source,
-                opt Type
+                Type
             }
         },
         opt Guide

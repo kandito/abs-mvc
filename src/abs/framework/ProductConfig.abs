@@ -1,28 +1,23 @@
 // Product line and features
-productline InternetBanking;
+productline SistemKeuangan;
 features
-    Account,
+    Program,
         Source,
         Type,
     GuidePage;
 
 // Delta modules
-/* BEGIN deltas for Biaya Source */
+/* BEGIN deltas for Sumber Dana */
 delta DProgramSource when Source;
 /* END */
 
-/* BEGIN deltas for Biaya Type */
-delta DProgramType when Type;
-/* END */
-
-/* BEGIN deltas for ContactPage */
+/* BEGIN deltas for GuidePage */
 delta DGuidePageController when GuidePage;
 delta DGuidePageRoute after DGuidePageController when GuidePage;
 /* END */
 
 
-/* BEGIN deltas for Form */
+/* BEGIN deltas for Form Source */
 delta DFormSourceController after DProgramSource when Source;
-delta DFormTypeController after DProgramType when Account;
 /* END */
 

@@ -98,6 +98,6 @@ modifies class ProgramControllerImpl
 		List<Program> dataModel = Nil;
 		dataModel = appendright(dataModel, program);
 		
-		return Pair("program/editSource", dataModel);
+		return Pair("program/detla/editSource", dataModel);
 	}
 }

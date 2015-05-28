@@ -1,17 +1,18 @@
 // Define your product(s) here.
 product Default(
-    Account,
-		Source
+    Program,
+		Type
 );
 
 product SistemKeuanganBO(
-    Account,
+    Program,
 		Type,
 	GuidePage
 );
 
 product SistemKeuanganBSO(
-    Account,
+    Program,
+		Type,
 		Source,
 	GuidePage
 );
