@@ -1,4 +1,4 @@
-package fmse.abs.orm;
+package com.fmse.abs.orm;
 
 import java.io.BufferedWriter;
 import java.io.File;

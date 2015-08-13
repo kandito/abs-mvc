@@ -98,6 +98,20 @@ modifies class ProgramControllerImpl
 		List<Program> dataModel = Nil;
 		dataModel = appendright(dataModel, program);
 		
-		return Pair("program/detla/editSource", dataModel);
+		return Pair("program/delta/editSource", dataModel);
+	}
+	
+	modifies Pair<String, List<Program>> detail(ABSHttpRequest request){ 
+		ProgramDb orm = new local ProgramDbImpl();
+		
+		String id= request.getInput("id");
+		
+		String condition = "idProgram=" + id;
+
+		List<Program> dataModel = Nil;
+		Program p = orm.findByAttributes("MProgramModel.ProgramImpl_c",condition);
+		dataModel = appendright(dataModel, p);
+
+		return Pair("program/delta/detailSource", dataModel);
 	}
 }

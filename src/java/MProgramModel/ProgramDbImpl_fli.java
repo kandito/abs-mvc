@@ -1,6 +1,6 @@
 package MProgramModel;
 
-import fmse.abs.orm.AbsDbOrm;
+import com.fmse.abs.orm.AbsDbOrm;
 import java.lang.reflect.Method;
 
 public class ProgramDbImpl_fli extends ProgramDbImpl_c {

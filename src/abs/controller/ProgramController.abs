@@ -155,7 +155,9 @@ class ProgramControllerImpl implements ProgramController
 	Pair<String, List<Program>> detail(ABSHttpRequest request){ 
 		ProgramDb orm = new local ProgramDbImpl();
 
-		String condition = "idProgram=1";
+		String id= request.getInput("id");
+		
+		String condition = "idProgram=" + id;
 
 		List<Program> dataModel = Nil;
 		Program p = orm.findByAttributes("MProgramModel.ProgramImpl_c",condition);

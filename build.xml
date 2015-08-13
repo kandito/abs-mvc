@@ -6,6 +6,8 @@
 	<property name="src" location="src" />
 	<property name="target" location="target" />
 	<property name="web" location="web" />
+	<property name="dist" location="dist" />
+	<property name="external" location="external" />
 
 	<property name="src.abs" location="${src}/abs" />
 	<property name="src.java" location="${src}/java" />
@@ -14,6 +16,7 @@
 	<property name="target.java.bin" location="${target}/java/bin" />
 
 	<property name="lib.abs" location="${lib}/absfrontend.jar" />
+	<property name="lib.orm" location="${lib}/absdborm.jar" />
 
 	<path id="build.abs.classpath">
 		<pathelement location="${lib.abs}" />
@@ -23,6 +26,11 @@
 	<!-- Check if absproduct property is set -->
     <condition property="absproduct.set">
         <isset property="absproduct"/>
+    </condition>
+	
+	<!-- Check if absproduct property is set -->
+    <condition property="warname.set">
+        <isset property="warname"/>
     </condition>
 
 	<fileset dir="${src.abs}" id="src.abs.files">
@@ -80,7 +88,27 @@
 	
 	<target name="abs.deploy" depends="abs.compile.java">
 		<jar 
-			destfile="${web}/app.jar"
-			basedir="${target.java.bin}" />
+			destfile="${lib}/app.jar" basedir="${target.java.bin}" />
+	</target>
+	
+	<target name="abs.dist" if="warname.set">
+		<war destfile="${dist}/${warname}.war" needxmlfile="false">
+		
+			<fileset dir="${external}">
+				<include name="**/*.*"/>
+			</fileset>
+			
+			<classes dir="${web}/classes"/>
+			
+			<lib dir="${lib}">
+				<include name="**/*.*"/>
+				<exclude name="absservlet.jar"/>
+				<exclude name="jasper-6.0.44.jar"/>
+				<exclude name="jsp-api-2.2.1-b03.jar"/>
+				<exclude name="tomcat-embed-core-8.0.23.jar"/>
+				<exclude name="tomcat-juli-8.0.23.jar"/>
+			</lib>
+			
+		</war>
 	</target>
 </project>

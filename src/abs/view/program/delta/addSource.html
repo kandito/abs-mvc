@@ -7,7 +7,7 @@
 	<div th:replace="fragments :: menu"></div>
 	<h3>Input Program with Source</h3>
 	
-	<form method="POST" action="/program/save.abs">
+	<form method="POST" th:action="${requestContextPath + '/program/save.abs'}" action="/ABS/program/save.abs">
 		<label>Nama Program</label><br />
 		<input type="text" name="namaProgram" /><br /><br />
 		

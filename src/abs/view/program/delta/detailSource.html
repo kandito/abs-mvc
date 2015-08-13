@@ -32,6 +32,9 @@
 		
 		<label>Biaya</label><br />
 		<span name="biaya" th:text="${data.biaya}" ></span><br /><br />
+		
+		<label>Sumber Dana</label><br />
+		<span name="sumberDana" th:text="${data.sumberDana.getString()}" ></span><br /><br />
 	
 	<div th:replace="fragments :: footer"></div>
 </body>

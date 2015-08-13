@@ -24,7 +24,13 @@ ABSHttpRequest, RouteConfig, ProductConfig dan Products
 Untuk melakukan proses kompilasi kode ABS yang dibuat silahkan masuk kedalam direktori folder dan jalankan perintah:
 >	ant -Dabsproduct=Default abs.deploy
 
-untuk dapat menjalankan perintah diatas diperlukan program tambahan yang bernama [Apache Ant](http://ant.apache.org/bindownload.cgi). Perintah tersebut akan menghasilkan sebuah file bernama `app.jar` di dalam direktori `web`. Setelah proses kompilasi selesai, langkah berikutnya adalah menjalankan ABSServer dengan mengetikkan perintah:
+untuk dapat menjalankan perintah diatas diperlukan program tambahan yang bernama [Apache Ant](http://ant.apache.org/bindownload.cgi). Perintah tersebut akan menghasilkan sebuah file bernama `app.jar` di dalam direktori `library`. Setelah proses kompilasi selesai, langkah berikutnya adalah menjalankan ABSServer dengan mengetikkan perintah:
 >	java -jar absserver.jar
 
-Untuk dapat melihat aplikasi web yang telah berhasil dibuat, silahkan buka web browser dan masukkan alamat `http://localhost:8080` 
+Untuk dapat melihat aplikasi web yang telah berhasil dibuat, silahkan buka web browser dan masukkan alamat `http://localhost:8081` 
+
+## Create .war distribution
+Untuk membuat berkas .war agar web dapat didistribusikan pada server tomcat jalankan perintah berikut:
+> ant -Dwarname=filename abs.dist
+
+Setelah itu akan terdapat file .war dengan nama filename pada direktori `dist` dan dapat didistribusikan pada server tomcat.
